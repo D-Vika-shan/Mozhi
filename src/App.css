@@ -1,38 +1,223 @@
-.App {
-  text-align: center;
+/* General body styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5; /* Light beige background */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars from appearing */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Main app container */
+.app-container {
   display: flex;
   flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Header styles */
+.header {
+  display: flex;
   align-items: center;
+  padding: 15px 30px; /* Increased padding for more space */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  background-color: #fff; /* Background color for the header */
+  border-bottom: 3px solid #ccc; /* Thicker bottom border for separation */
+}
+
+
+/* Logo styles */
+.logo {
+  width: 70px; /* Larger logo size */
+  height: 70px; /* Maintain aspect ratio */
+  margin-right: 15px; /* Increased space between logo and app name */
+}
+
+
+/* App name styles */
+.app-name {
+  font-size: 50px; /* Larger font size */
+  font-weight: bold;
+  color: #333;
+  font-family: 'Courier New', Courier, monospace; /* Retro font */
+  margin: 0;
+}
+
+
+/* Translator container styles */
+.translator-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: calc(100vh - 80px); /* Subtract header height */
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Person container styles */
+.person-container {
+  flex: 1;
+  padding: 30px; /* Increased padding for more space */
+  font-size: 25px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin: 0;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s, color 0.3s;
+  box-sizing: border-box;
+  height: 100%; /* Fill the height of the container */
+  overflow: hidden; /* Prevent scrollbars within the container */
+}
+
+
+.person-container.speaking {
+  background-color: #dff0d8; /* Light green for speaking */
+  color: #3c763d;
+}
+
+
+.person-container.listening {
+  background-color: #d9edf7; /* Light blue for listening */
+  color: #31708f;
+}
+
+
+/* Heading styles */
+h2 {
+  font-size: 32px; /* Larger font size */
+  color: #333;
+  margin-bottom: 15px; /* Increased margin for spacing */
+}
+
+
+/* Button styles */
+button {
+  padding: 12px 25px; /* Increased padding for larger buttons */
+  margin: 8px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 30px; /* Larger font size for buttons */
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+
+/* Start button styles */
+.start-button {
+  background-color: #5bc0de; /* Blue */
+}
+
+
+.start-button:disabled {
+  background-color: #9fc5e8; /* Light blue when disabled */
+}
+
+
+.start-button:hover:not(:disabled) {
+  background-color: #31b0d5;
+  transform: scale(1.05);
+}
+
+
+/* Stop button styles */
+.stop-button {
+  background-color: #d9534f; /* Red */
+}
+
+
+.stop-button:disabled {
+  background-color: #f2a0a6; /* Light red when disabled */
+}
+
+
+.stop-button:hover:not(:disabled) {
+  background-color: #c9302c;
+  transform: scale(1.05);
+}
+
+
+/* Volume button styles */
+.volume-button {
+  background-color: #f0ad4e; /* Orange */
+  border: none;
+  color: #fff;
+  padding: 8px; /* Increased padding for better appearance */
+  margin-left: 15px; /* Increased space between text and button */
+}
+
+
+.volume-button:hover {
+  background-color: #ec971f;
+}
+
+
+/* Error message styles */
+.error-message {
+  color: #a94442; /* Red */
+  font-size: 16px; /* Larger font size for better readability */
+}
+
+
+/* Person container paragraphs */
+.person-container p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+
+.person-container .volume-button {
+  margin-left: 10px; /* Adjust spacing as needed */
+}
+
+
+/* Name form styling */
+.name-form {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: calc(100vh - 80px); /* Full height minus header */
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+
+.name-form label {
+  margin-bottom: 15px;
+  font-size: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.name-form input {
+  font-size: 18px;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px; /* Max width for better appearance */
+}
+
+
+.name-form button {
+  background-color: #5bc0de; /* Blue */
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+
+.name-form button:hover {
+  background-color: #31b0d5;
+  transform: scale(1.05);
 }
