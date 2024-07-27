@@ -16,6 +16,8 @@ const App = () => {
   const [error, setError] = useState('');
   const [name1, setName1] = useState('');
   const [name2, setName2] = useState('');
+  const [gender1, setGender1] = useState('male'); // New state for gender
+  const [gender2, setGender2] = useState('male'); // New state for gender
   const [isNamesSet, setIsNamesSet] = useState(false);
   const badWordsTamil = ['வீய்ம்', 'அருயான்']; // Example Tamil bad words
 
