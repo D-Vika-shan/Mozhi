@@ -238,9 +238,14 @@ button {
     font-size: 30px;
   }
 
+  .translator-container {
+    flex-direction: column; /* Stack vertically */
+  }
+
   .person-container {
     padding: 15px;
     font-size: 18px;
+    height: auto; /* Adjust height to fit content */
   }
 
   button {
@@ -268,7 +273,7 @@ button {
 
 @media (max-width: 480px) {
   .header {
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     padding: 10px;
   }
@@ -286,6 +291,7 @@ button {
   .person-container {
     padding: 10px;
     font-size: 16px;
+    height: auto; /* Adjust height to fit content */
   }
 
   button {
