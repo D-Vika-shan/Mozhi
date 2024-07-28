@@ -1,0 +1,23 @@
+/* Tutorial.css */
+.tutorial-container {
+    margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  min-height: 100vh; /* Full viewport height */
+  padding: 20px;
+}
+
+.iframe-container {
+  display: flex;
+  justify-content: center; /* Center the iframe */
+  margin-top: 0px; /* Space above the iframe */
+}
+
+.back-button {
+  margin-bottom: 0px;
+  margin-top: 0px;
+   /* Space below the button */
+}
+
