@@ -1,16 +1,30 @@
-.app-container {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
-  background: url('./background1.gif') no-repeat center center fixed, /* First GIF */
-              url('./background2.gif') no-repeat center center fixed, /* Second GIF */
-              url('./background3.gif') no-repeat center center fixed; /* Third GIF */
-  background-size: cover; /* Adjusts size of background images */
-  background-blend-mode: overlay; /* Optional: blends the GIFs for an overlay effect */
-  color: #fff; /* Ensures text is visible against background */
+/* Default (light) mode styles */
+body {
+  background-color: #f0f0f0;
+  color: #000;
 }
 
+.app-container {
+  background: url('./background1.gif') no-repeat center center fixed, 
+              url('./background2.gif') no-repeat center center fixed, 
+              url('./background3.gif') no-repeat center center fixed;
+  background-size: cover;
+  background-blend-mode: overlay;
+}
 
+/* Dark mode styles */
+body[data-theme='dark'] {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.app-container[data-theme='dark'] {
+  background: url('./background1.gif') no-repeat center center fixed, 
+              url('./background2.gif') no-repeat center center fixed, 
+              url('./background3.gif') no-repeat center center fixed;
+  background-size: cover;
+  background-blend-mode: overlay;
+}
 
 /* Adjustments to ensure form is properly positioned under the overlay */
 .app-container {
@@ -53,6 +67,7 @@ body {
   background-color: #fff; /* Background color for the header */
   border-bottom: 3px solid #ccc; /* Thicker bottom border for separation */
 }
+
 
 /* Logo styles */
 .logo {
@@ -222,4 +237,52 @@ button {
 .name-form button:hover {
   background-color: #31b0d5;
   transform: scale(1.05);
+}
+
+/* Add to your App.css */
+
+.tabs {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: #000000;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.tab-button.active {
+  background: #000000;
+  border-bottom: 1px solid transparent;
+}
+
+.history-container {
+  padding: 20px;
+}
+
+.back-button {
+  
+  border: 1px solid #ccc;
+  background: #000000;
+  display: inline-block;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.ul{
+  color: black;
+}
+
+.delete-button{
+  font-size:12px;
+  background-color: #a94442;
+  padding:5px;
+}
+
+.bgwhite {
+  background-color: rgba(255, 255, 255, 0.8); /* 80% opacity */
 }
