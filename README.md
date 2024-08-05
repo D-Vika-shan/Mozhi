@@ -6,11 +6,11 @@ Mozhi is a language translation application designed to facilitate communication
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![mozhi enter names](public/mozhipic1.jpeg)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![mozhi main](public/mozhipic2.jpeg)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![mozhi saved phrases](public/mozhipic3.jpeg)
 
 ## Features
 
