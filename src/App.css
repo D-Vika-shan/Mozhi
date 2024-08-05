@@ -32,7 +32,6 @@ body[data-theme='dark'] {
   padding-top: 300px; /* Adjust this value if necessary */
 }
 
-
 /* Styling for labels with the class 'names' */
 label.names {
   color: black; /* Text color */
@@ -40,6 +39,7 @@ label.names {
   font-size: 70px; /* Font size of 70 pixels */
   margin-bottom: 10px; /* Space between labels */
 }
+
 /* General body styling */
 body {
   font-family: 'Arial', sans-serif;
@@ -67,7 +67,6 @@ body {
   background-color: #fff; /* Background color for the header */
   border-bottom: 3px solid #ccc; /* Thicker bottom border for separation */
 }
-
 
 /* Logo styles */
 .logo {
@@ -265,7 +264,6 @@ button {
 }
 
 .back-button {
-  
   border: 1px solid #ccc;
   background: #000000;
   display: inline-block;
@@ -273,20 +271,79 @@ button {
   cursor: pointer;
 }
 
-.ul{
+.ul {
   color: black;
 }
 
-.delete-button{
-  font-size:12px;
+.delete-button {
+  font-size: 12px;
   background-color: #a94442;
-  padding:5px;
+  padding: 5px;
 }
 
-.save-button{
-  background-color:grey;
+.save-button {
+  background-color: grey;
 }
 
 .bgwhite {
   background-color: rgba(255, 255, 255, 0.8); /* 80% opacity */
 }
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Adjust header styles */
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+  }
+
+  .app-name {
+    font-size: 30px; /* Smaller font size for mobile */
+  }
+
+  /* Adjust button sizes */
+  button {
+    font-size: 20px; /* Smaller font size for buttons */
+    padding: 10px 20px; /* Smaller padding */
+  }
+
+  /* Adjust person container styles */
+  .person-container {
+    padding: 20px; /* Less padding */
+    font-size: 20px; /* Smaller font size */
+  }
+
+  /* Adjust label styles */
+  label.names {
+    font-size: 40px; /* Smaller font size */
+  }
+
+  /* Adjust tab button styles */
+  .tab-button {
+    padding: 8px 15px;
+    font-size: 14px; /* Smaller font size */
+  }
+
+  /* Adjust input fields */
+  .name-form input {
+    font-size: 16px; /* Smaller font size */
+    padding: 8px; /* Smaller padding */
+  }
+
+  /* Adjust volume button styles */
+  .volume-button {
+    padding: 5px; /* Smaller padding */
+  }
+
+  /* Adjust margins */
+  .tabs {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .history-container {
+    padding: 10px; /* Less padding */
+  }
+}
+
