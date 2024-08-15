@@ -1,7 +1,11 @@
 /* Default (light) mode styles */
 body {
-  background-color: #f0f0f0;
+  background-color: #f5f5f5;
   color: #000;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrollbars from appearing */
 }
 
 .app-container {
@@ -10,6 +14,8 @@ body {
               url('./background3.gif') no-repeat center center fixed;
   background-size: cover;
   background-blend-mode: overlay;
+  position: relative;
+  padding-top: 300px; /* Adjust this value if necessary */
 }
 
 /* Dark mode styles */
@@ -26,34 +32,19 @@ body[data-theme='dark'] {
   background-blend-mode: overlay;
 }
 
-/* Adjustments to ensure form is properly positioned under the overlay */
-.app-container {
-  position: relative;
-  padding-top: 300px; /* Adjust this value if necessary */
-}
-
-/* Styling for labels with the class 'names' */
-label.names {
-  color: black; /* Text color */
-  font-weight: 500; /* Medium weight font */
-  font-size: 70px; /* Font size of 70 pixels */
-  margin-bottom: 10px; /* Space between labels */
-}
-
 /* General body styling */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f5f5f5; /* Light beige background */
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrollbars from appearing */
+  overflow: hidden;
 }
 
 /* Main app container */
 .app-container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
   margin: 0;
   padding: 0;
 }
@@ -62,26 +53,49 @@ body {
 .header {
   display: flex;
   align-items: center;
-  padding: 15px 30px; /* Increased padding for more space */
-  box-sizing: border-box; /* Include padding in the element's total width and height */
-  background-color: #fff; /* Background color for the header */
-  border-bottom: 3px solid #ccc; /* Thicker bottom border for separation */
+  padding: 15px 30px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-bottom: 3px solid #ccc;
+  position: relative;
 }
 
 /* Logo styles */
 .logo {
-  width: 70px; /* Larger logo size */
-  height: 70px; /* Maintain aspect ratio */
-  margin-right: 15px; /* Increased space between logo and app name */
+  width: 70px;
+  height: 70px;
+  margin-right: 15px;
 }
 
 /* App name styles */
 .app-name {
-  font-size: 50px; /* Larger font size */
+  font-size: 50px;
   font-weight: bold;
   color: #333;
-  font-family: 'Courier New', Courier, monospace; /* Retro font */
+  font-family: 'Courier New', Courier, monospace;
   margin: 0;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  margin: 0 5px;
+  font-size: 18px;
+}
+
+.tab-button.active {
+  background: #000;
+  border-bottom: 1px solid transparent;
 }
 
 /* Translator container styles */
@@ -89,7 +103,7 @@ body {
   display: flex;
   flex: 1;
   width: 100%;
-  height: calc(100vh - 80px); /* Subtract header height */
+  height: calc(100vh - 80px);
   margin: 0;
   padding: 0;
 }
@@ -97,7 +111,7 @@ body {
 /* Person container styles */
 .person-container {
   flex: 1;
-  padding: 30px; /* Increased padding for more space */
+  padding: 30px;
   font-size: 25px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -105,46 +119,46 @@ body {
   background-color: #f0f0f0;
   transition: background-color 0.3s, color 0.3s;
   box-sizing: border-box;
-  height: 100%; /* Fill the height of the container */
-  overflow: hidden; /* Prevent scrollbars within the container */
+  height: 100%;
+  overflow: hidden;
 }
 
 .person-container.speaking {
-  background-color: #dff0d8; /* Light green for speaking */
+  background-color: #dff0d8;
   color: #3c763d;
 }
 
 .person-container.listening {
-  background-color: #d9edf7; /* Light blue for listening */
+  background-color: #d9edf7;
   color: #31708f;
 }
 
 /* Heading styles */
 h2 {
-  font-size: 32px; /* Larger font size */
+  font-size: 32px;
   color: #333;
-  margin-bottom: 15px; /* Increased margin for spacing */
+  margin-bottom: 15px;
 }
 
 /* Button styles */
 button {
-  padding: 12px 25px; /* Increased padding for larger buttons */
+  padding: 12px 25px;
   margin: 8px;
   border: none;
   border-radius: 5px;
-  color: #fff;
+  color: #000;
   cursor: pointer;
-  font-size: 30px; /* Larger font size for buttons */
+  font-size: 20px;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 /* Start button styles */
 .start-button {
-  background-color: #5bc0de; /* Blue */
+  background-color: #5bc0de;
 }
 
 .start-button:disabled {
-  background-color: #9fc5e8; /* Light blue when disabled */
+  background-color: #9fc5e8;
 }
 
 .start-button:hover:not(:disabled) {
@@ -154,11 +168,11 @@ button {
 
 /* Stop button styles */
 .stop-button {
-  background-color: #d9534f; /* Red */
+  background-color: #d9534f;
 }
 
 .stop-button:disabled {
-  background-color: #f2a0a6; /* Light red when disabled */
+  background-color: #f2a0a6;
 }
 
 .stop-button:hover:not(:disabled) {
@@ -168,11 +182,11 @@ button {
 
 /* Volume button styles */
 .volume-button {
-  background-color: #f0ad4e; /* Orange */
+  background-color: #f0ad4e;
   border: none;
   color: #fff;
-  padding: 8px; /* Increased padding for better appearance */
-  margin-left: 15px; /* Increased space between text and button */
+  padding: 8px;
+  margin-left: 15px;
 }
 
 .volume-button:hover {
@@ -181,8 +195,8 @@ button {
 
 /* Error message styles */
 .error-message {
-  color: #a94442; /* Red */
-  font-size: 16px; /* Larger font size for better readability */
+  color: #a94442;
+  font-size: 16px;
 }
 
 /* Person container paragraphs */
@@ -193,7 +207,7 @@ button {
 }
 
 .person-container .volume-button {
-  margin-left: 10px; /* Adjust spacing as needed */
+  margin-left: 10px;
 }
 
 /* Name form styling */
@@ -202,7 +216,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 80px); /* Full height minus header */
+  height: calc(100vh - 80px);
   padding: 20px;
 }
 
@@ -218,11 +232,11 @@ button {
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 100%;
-  max-width: 400px; /* Max width for better appearance */
+  max-width: 400px;
 }
 
 .name-form button {
-  background-color: #5bc0de; /* Blue */
+  background-color: #5bc0de;
   border: none;
   color: #fff;
   font-size: 20px;
@@ -238,112 +252,83 @@ button {
   transform: scale(1.05);
 }
 
-/* Add to your App.css */
-
-.tabs {
-  display: flex;
-  justify-content: right;
-  margin-bottom: 20px;
-}
-
-.tab-button {
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  background: #000000;
-  cursor: pointer;
-  margin: 0 5px;
-}
-
-.tab-button.active {
-  background: #000000;
-  border-bottom: 1px solid transparent;
-}
-
+/* History container styling */
 .history-container {
   padding: 20px;
 }
 
 .back-button {
   border: 1px solid #ccc;
-  background: #000000;
+  background: #000;
+  color: #fff;
   display: inline-block;
+  padding: 10px 20px;
   margin-bottom: 20px;
   cursor: pointer;
+  font-size: 18px;
 }
 
-.ul {
-  color: black;
+.back-button:hover {
+  background: #333;
+}
+
+/* Saved Phrases list styling */
+.history-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history-container li {
+  margin-bottom: 15px;
 }
 
 .delete-button {
   font-size: 12px;
   background-color: #a94442;
+  color: #fff;
   padding: 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
+.delete-button:hover {
+  background-color: #c9302c;
+}
+
+/* Save button styling */
 .save-button {
   background-color: grey;
 }
 
+.save-button:hover {
+  background-color: #333;
+}
+
+/* Background white with opacity styling */
 .bgwhite {
   background-color: rgba(255, 255, 255, 0.8); /* 80% opacity */
 }
 
-/* Media Queries for Mobile Responsiveness */
-@media (max-width: 768px) {
-  /* Adjust header styles */
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 15px;
-  }
-
-  .app-name {
-    font-size: 30px; /* Smaller font size for mobile */
-  }
-
-  /* Adjust button sizes */
-  button {
-    font-size: 20px; /* Smaller font size for buttons */
-    padding: 10px 20px; /* Smaller padding */
-  }
-
-  /* Adjust person container styles */
-  .person-container {
-    padding: 20px; /* Less padding */
-    font-size: 20px; /* Smaller font size */
-  }
-
-  /* Adjust label styles */
-  label.names {
-    font-size: 40px; /* Smaller font size */
-  }
-
-  /* Adjust tab button styles */
-  .tab-button {
-    padding: 8px 15px;
-    font-size: 14px; /* Smaller font size */
-  }
-
-  /* Adjust input fields */
-  .name-form input {
-    font-size: 16px; /* Smaller font size */
-    padding: 8px; /* Smaller padding */
-  }
-
-  /* Adjust volume button styles */
-  .volume-button {
-    padding: 5px; /* Smaller padding */
-  }
-
-  /* Adjust margins */
-  .tabs {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .history-container {
-    padding: 10px; /* Less padding */
-  }
+/* App main styling */
+.App-main {
+  padding: 20px;
 }
 
+/* Team details container styling */
+.details-container {
+  margin-left: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.team-details,
+.guides {
+  flex: 4;
+  margin-right: 50px;
+  font-size: x-large;
+}
+
+.guides {
+  margin-right: 0;
+}

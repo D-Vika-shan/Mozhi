@@ -22,7 +22,7 @@ const App = () => {
   const [history, setHistory] = useState([]);
   const [currentTab, setCurrentTab] = useState('main'); // State to manage tabs
   const [showTutorial, setShowTutorial] = useState(false); // State to toggle tutorial view
-  const badWordsTamil = ['வீய்ம்', 'அருயான்']; // Example Tamil bad words
+  const [language, setLanguage] = useState('en'); // State for language
 
   const recognitionRef1 = useRef(null);
   const recognitionRef2 = useRef(null);
@@ -73,7 +73,7 @@ const App = () => {
             stopListening(recognitionRef, setIsListening, timeoutRef);
           } else {
             console.error('Speech recognition error', event.error);
-            setError(`Speech recognition error: ${event.error}`); // Fixed interpolation
+            setError(`Speech recognition error: ${event.error}`);
           }
         };
 
@@ -96,7 +96,8 @@ const App = () => {
   }, [stopListening]);
 
   // Bad words list for moderation (replace with actual API or list)
-  const badWords = ['badword1', 'badword2']; 
+  const badWordsTamil = ['வீய்ம்', 'அருயான்'];
+  const badWords = ['badword1', 'badword2']; // Example English bad words
 
   const moderateContent = async (text, language) => {
     let moderatedText = text;
@@ -111,7 +112,7 @@ const App = () => {
 
   const translateText = useCallback(async (text, fromLang, toLang, setTranslatedText) => {
     try {
-      const moderatedText = fromLang === 'ta' ? await moderateContent(text, 'ta') : text; // Moderate Tamil text before translating
+      const moderatedText = fromLang === 'ta' ? await moderateContent(text, 'ta') : text;
       const response = await axios({
         baseURL: endpoint,
         method: 'post',
@@ -134,7 +135,7 @@ const App = () => {
 
       if (response.data && response.data[0] && response.data[0].translations && response.data[0].translations[0]) {
         const translatedText = response.data[0].translations[0].text;
-        const moderatedTranslatedText = fromLang === 'ta' ? await moderateContent(translatedText, 'ta') : translatedText; // Moderate Tamil translation
+        const moderatedTranslatedText = fromLang === 'ta' ? await moderateContent(translatedText, 'ta') : translatedText;
         setTranslatedText(moderatedTranslatedText);
       } else {
         throw new Error('Unexpected response format');
@@ -172,20 +173,20 @@ const App = () => {
     const startSpeech = (textPart, callback) => {
       const utterance = new SpeechSynthesisUtterance(textPart);
       utterance.lang = language;
-      utterance.onend = callback; // Callback after speech ends
+      utterance.onend = callback;
       window.speechSynthesis.speak(utterance);
     };
 
     const playBleepAndSpeak = (index) => {
-      if (index >= parts.length) return; // No more parts to process
+      if (index >= parts.length) return;
 
       startSpeech(parts[index], () => {
         if (index < parts.length - 1) {
           bleepRef.current.play().then(() => {
-            playBleepAndSpeak(index + 1); // Proceed to the next part
+            playBleepAndSpeak(index + 1);
           }).catch(error => {
             console.error('Error playing bleep sound:', error);
-            playBleepAndSpeak(index + 1); // Fallback to next part if bleep sound fails
+            playBleepAndSpeak(index + 1);
           });
         }
       });
@@ -198,7 +199,7 @@ const App = () => {
     e.preventDefault();
     if (name1 && name2) {
       setIsNamesSet(true);
-      setCurrentTab('main'); // Ensure the main tab is visible after names are set
+      setCurrentTab('main');
     }
   };
 
@@ -208,6 +209,10 @@ const App = () => {
       document.body.setAttribute('data-theme', newMode ? 'dark' : 'light');
       return newMode;
     });
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(prevLanguage => prevLanguage === 'en' ? 'ta' : 'en');
   };
 
   const savePhrase = (phrase) => {
@@ -223,12 +228,46 @@ const App = () => {
   };
 
   const handleTutorialClick = () => {
-    setShowTutorial(true); // Show the tutorial page
+    setShowTutorial(true);
   };
 
   const handleBackToMain = () => {
-    setShowTutorial(false); // Go back to the main page
+    setShowTutorial(false);
   };
+
+  // Translations for language toggling
+  const translations = {
+    en: {
+      mainTitle: 'Main',
+      person1Label: 'Name of Person 1 (Tamil):',
+      person2Label: 'Name of Person 2 (English):',
+      startConversation: 'Start Conversation',
+      original: 'Original:',
+      translationFor: 'Translation for',
+      savePhrase: 'Save Phrase',
+      tutorial: 'Tutorial',
+      savedPhrases: 'Saved Phrases',
+      teamDetails: 'Team Details',
+      back: 'Back',
+      guidedBy: 'Guided by'
+    },
+    ta: {
+      mainTitle: 'முதன்மை',
+      person1Label: 'முதலாவது நபரின் பெயர் (தமிழ்):',
+      person2Label: 'இரண்டாவது நபரின் பெயர் (ஆங்கிலம்):',
+      startConversation: 'உரையாடலைத் தொடங்கு',
+      original: 'மூல:',
+      translationFor: 'மொழிபெயர்ப்பு',
+      savePhrase: 'சேமிக்கப்பட்ட சொற்றொடர்கள்',
+      tutorial: 'முறையீடு',
+      savedPhrases: 'சேமிக்கப்பட்ட வார்த்தைகள்',
+      teamDetails: 'அணி விவரங்கள்',
+      back: 'முந்தைய பக்கம்',
+      guidedBy: 'முறையீடு'
+    }
+  };
+
+  const getTranslation = (key) => translations[language][key] || key;
 
   return (
     <div className="app-container" data-theme={darkMode ? 'dark' : 'light'}>
@@ -237,17 +276,23 @@ const App = () => {
         <div className="app-name">Mozhi</div>
         <div className="tabs">
           <button onClick={() => handleTabChange('main')} className={`tab-button ${currentTab === 'main' ? 'active' : ''}`}>
-            Main
+            {getTranslation('mainTitle')}
           </button>
           <button onClick={() => handleTabChange('history')} className={`tab-button ${currentTab === 'history' ? 'active' : ''}`}>
-            Saved Phrases
+            {getTranslation('savedPhrases')}
+          </button>
+          <button onClick={() => handleTabChange('team')} className={`tab-button ${currentTab === 'team' ? 'active' : ''}`}>
+            {getTranslation('teamDetails')}
           </button>
           <button onClick={handleTutorialClick} className="tab-button">
-            Tutorial
+            {getTranslation('tutorial')}
           </button>
         </div>
         <button onClick={toggleDarkMode} className="dark-mode-toggle">
           {darkMode ? <FaSun /> : <FaMoon />}
+        </button>
+        <button onClick={toggleLanguage} className="language-toggle">
+          {language === 'en' ? 'தமிழ்' : 'English'}
         </button>
       </div>
 
@@ -259,9 +304,9 @@ const App = () => {
             <>
               {!isNamesSet ? (
                 <form onSubmit={handleNamesSubmit} className="name-form">
-                  <h2>Your 1-stop solution to your language barrier!!!</h2>
+                  <h2>{getTranslation('mainTitle')}</h2>
                   <label className='names'>
-                    Name of Person 1 (Tamil):
+                    {getTranslation('person1Label')}
                     <input
                       type="text"
                       value={name1}
@@ -269,8 +314,8 @@ const App = () => {
                       required
                     />
                   </label>
-                  <label className=''>
-                    Name of Person 2 (English):
+                  <label>
+                    {getTranslation('person2Label')}
                     <input
                       type="text"
                       value={name2}
@@ -278,7 +323,7 @@ const App = () => {
                       required
                     />
                   </label>
-                  <button type="submit">Start Conversation</button>
+                  <button type="submit">{getTranslation('startConversation')}</button>
                 </form>
               ) : (
                 <div className="translator-container">
@@ -297,25 +342,25 @@ const App = () => {
                       disabled={isListening1}
                       className="start-button"
                     >
-                      <FaMicrophone /> Start Speaking
+                      <FaMicrophone /> {getTranslation('startConversation')}
                     </button>
                     <button
                       onClick={() => stopListening(recognitionRef1, setIsListening1, timeoutRef1)}
                       disabled={!isListening1}
                       className="stop-button"
                     >
-                      <FaStop /> Stop Speaking
+                      <FaStop /> {getTranslation('stopSpeaking')}
                     </button>
                     <button
                       onClick={() => savePhrase({ original: transcript1, translation: translatedText2, language: 'ta' })}
                       className="save-button"
                       disabled={!transcript1}
                     >
-                      <FaSave /> Save Phrase
+                      <FaSave /> {getTranslation('savePhrase')}
                     </button>
-                    <p><strong>Original:</strong> {transcript1}</p>
+                    <p><strong>{getTranslation('original')}:</strong> {transcript1}</p>
                     <p>
-                      <strong>Translation for {name2}:</strong> {translatedText2}
+                      <strong>{getTranslation('translationFor')} {name2}:</strong> {translatedText2}
                     </p>
                     {error && <p className="error-message">{error}</p>}
                   </div>
@@ -335,25 +380,25 @@ const App = () => {
                       disabled={isListening2}
                       className="start-button"
                     >
-                      <FaMicrophone /> Start Speaking
+                      <FaMicrophone /> {getTranslation('startConversation')}
                     </button>
                     <button
                       onClick={() => stopListening(recognitionRef2, setIsListening2, timeoutRef2)}
                       disabled={!isListening2}
                       className="stop-button"
                     >
-                      <FaStop /> Stop Speaking
+                      <FaStop /> {getTranslation('stopSpeaking')}
                     </button>
                     <button
                       onClick={() => savePhrase({ original: transcript2, translation: translatedText1, language: 'en' })}
                       className="save-button"
                       disabled={!transcript2}
                     >
-                      <FaSave /> Save Phrase
+                      <FaSave /> {getTranslation('savePhrase')}
                     </button>
-                    <p><strong>Original:</strong> {transcript2}</p>
+                    <p><strong>{getTranslation('original')}:</strong> {transcript2}</p>
                     <p>
-                      <strong>Translation for {name1}:</strong> {translatedText1}
+                      <strong>{getTranslation('translationFor')} {name1}:</strong> {translatedText1}
                     </p>
                     {error && <p className="error-message">{error}</p>}
                   </div>
@@ -365,27 +410,54 @@ const App = () => {
           {currentTab === 'history' && (
             <div className="history-container">
               <button onClick={() => handleTabChange('main')} className="back-button">
-                <FaArrowLeft /> Back
+                <FaArrowLeft /> {getTranslation('back')}
               </button>
-              <h2>Saved Phrases</h2>
+              <h2>{getTranslation('savedPhrases')}</h2>
               <ul>
                 {history.map((item, index) => (
                   <li key={index}>
                     <div className='bgwhite'>
-                      <p><button onClick={() => deletePhrase(index)} className="delete-button">
-                        X
-                      </button><strong>Original ({item.language}):</strong> {item.original}</p>
-                      <p><strong>Translation:</strong> {item.translation}</p>
+                      <p>
+                        <button onClick={() => deletePhrase(index)} className="delete-button">
+                          X
+                        </button>
+                        <strong>{getTranslation('original')} ({item.language}):</strong> {item.original}
+                      </p>
+                      <p><strong>{getTranslation('translation')}:</strong> {item.translation}</p>
                     </div>
                   </li>
                 ))}
               </ul>
             </div>
           )}
+          {currentTab === 'team' && (
+            <main className="App-main">
+              <div className="details-container">
+                <div className="team-details">
+                  <h3>{getTranslation('teamDetails')}</h3>
+                  <ul>
+                    <li>Mridula Prasad</li>
+                    <li>Kaviya R</li>
+                    <li>Tejaswini Dubey</li>
+                    <li>Harshini V</li>
+                    <li>Devika Prashant</li>
+                  </ul>
+                </div>
+                <div className="guides">
+                  <h3>{getTranslation('guidedBy')}:</h3>
+                  <ul>
+                    <li>Dr. Raj Ramachandran</li>
+                    <li>Prof. Suganeshwari G</li>
+                  </ul>
+                </div>
+              </div>
+            </main>
+          )}
         </>
       )}
     </div>
   );
 };
+
 
 export default App;
