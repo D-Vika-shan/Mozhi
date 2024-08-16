@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { FaMicrophone, FaStop, FaVolumeUp, FaMoon, FaSun, FaSave, FaArrowLeft } from 'react-icons/fa';
-import './App.css'; // Import the CSS file
+import './App.css'; 
 import logo from './logo.png';
-import bleepSound from './bleep.mp3'; // Import a bleep sound file
-import Tutorial from './Tutorial'; // Import the Tutorial component
+import bleepSound from './bleep.mp3'; 
+import Tutorial from './Tutorial'; 
 
 const App = () => {
   const [translatedText1, setTranslatedText1] = useState('');
@@ -20,9 +20,9 @@ const App = () => {
   const [isNamesSet, setIsNamesSet] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [history, setHistory] = useState([]);
-  const [currentTab, setCurrentTab] = useState('main'); // State to manage tabs
-  const [showTutorial, setShowTutorial] = useState(false); // State to toggle tutorial view
-  const [language, setLanguage] = useState('en'); // State for language
+  const [currentTab, setCurrentTab] = useState('main'); 
+  const [showTutorial, setShowTutorial] = useState(false); 
+  const [language, setLanguage] = useState('en'); 
 
   const recognitionRef1 = useRef(null);
   const recognitionRef2 = useRef(null);
@@ -301,7 +301,9 @@ const App = () => {
       </div>
 
       {showTutorial ? (
-        <Tutorial onBack={handleBackToMain} />
+
+        <Tutorial onBack={handleBackToMain} language={language} getTranslation={getTranslation} />
+
       ) : (
         <>
           {currentTab === 'main' && (
