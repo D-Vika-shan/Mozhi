@@ -249,7 +249,9 @@ const App = () => {
       savedPhrases: 'Saved Phrases',
       teamDetails: 'Team Details',
       back: 'Back',
-      guidedBy: 'Guided by'
+      guidedBy: 'Guided by',
+      teamMembers: ['Mridula Prasad', 'Kaviya R', 'Tejaswini Dubey', 'Harshini V', 'Devika Prashant'],
+      guides: ['Dr. Raj Ramachandran', 'Prof. Suganeshwari G']
     },
     ta: {
       mainTitle: 'முதன்மை',
@@ -258,15 +260,17 @@ const App = () => {
       startConversation: 'உரையாடலைத் தொடங்கு',
       original: 'மூல:',
       translationFor: 'மொழிபெயர்ப்பு',
-      savePhrase: 'சேமிக்கப்பட்ட சொற்றொடர்கள்',
+      savePhrase: 'சேமிக்கவும்',
       tutorial: 'முறையீடு',
       savedPhrases: 'சேமிக்கப்பட்ட வார்த்தைகள்',
       teamDetails: 'அணி விவரங்கள்',
       back: 'முந்தைய பக்கம்',
-      guidedBy: 'முறையீடு'
+      guidedBy: 'முறையீடு',
+      teamMembers: ['மிருதுளா பிரசாத்', 'கவியா ஆர்', 'தெஜஸ்வினி துபே', 'ஹர்ஷினி வி', 'தேவிகா பிரஷாந்த்'],
+      guides: ['டாக்டர் ராஜ் ராமச்சந்திரன்', 'பேராசிரியர் சுகனேஸ்வரி ஜி']
     }
   };
-
+  
   const getTranslation = (key) => translations[language][key] || key;
 
   return (
@@ -436,23 +440,23 @@ const App = () => {
                 <div className="team-details">
                   <h3>{getTranslation('teamDetails')}</h3>
                   <ul>
-                    <li>Mridula Prasad</li>
-                    <li>Kaviya R</li>
-                    <li>Tejaswini Dubey</li>
-                    <li>Harshini V</li>
-                    <li>Devika Prashant</li>
+                    {getTranslation('teamMembers').map((member, index) => (
+                      <li key={index}>{member}</li>
+                    ))}
                   </ul>
                 </div>
                 <div className="guides">
                   <h3>{getTranslation('guidedBy')}:</h3>
                   <ul>
-                    <li>Dr. Raj Ramachandran</li>
-                    <li>Prof. Suganeshwari G</li>
+                    {getTranslation('guides').map((guide, index) => (
+                      <li key={index}>{guide}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
             </main>
           )}
+
         </>
       )}
     </div>
