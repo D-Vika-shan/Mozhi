@@ -285,9 +285,9 @@ const App = () => {
           <button onClick={() => handleTabChange('history')} className={`tab-button ${currentTab === 'history' ? 'active' : ''}`}>
             {getTranslation('savedPhrases')}
           </button>
-          <button onClick={() => handleTabChange('team')} className={`tab-button ${currentTab === 'team' ? 'active' : ''}`}>
+          {/*<button onClick={() => handleTabChange('team')} className={`tab-button ${currentTab === 'team' ? 'active' : ''}`}>
             {getTranslation('teamDetails')}
-          </button>
+          </button>*/}
           <button onClick={handleTutorialClick} className="tab-button">
             {getTranslation('tutorial')}
           </button>
