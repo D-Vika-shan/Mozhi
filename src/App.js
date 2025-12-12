@@ -30,8 +30,8 @@ const App = () => {
   const timeoutRef2 = useRef(null);
   const bleepRef = useRef(new Audio(bleepSound)); // Reference to bleep sound
 
-  const key = "0ea59df1599546fb9ab706c3b333f91d";
-  const endpoint = "https://api.cognitive.microsofttranslator.com/translate";
+  const key = "API_KEY";
+  const endpoint = "API_ENDPOINT";
   const location = "centralindia";
 
   const stopListening = useCallback((recognitionRef, setIsListening, timeoutRef) => {
